@@ -3,6 +3,10 @@
 #' Create a theme with accompanying functions, so all plots
 #' are homogeneous.
 #' @export
+#'
+
+library(ggplot2)
+
 theme_professional <- function() {
 
   library(ggplot2)
@@ -12,8 +16,8 @@ theme_professional <- function() {
   # and it's a readable sans-serif font
   windowsFonts(C = windowsFont("Calibri"))
   # Start on the basis of theme_classic
-  ggplot2::theme_classic(base_family = "C") +
-    ggplot2::theme(
+  theme_classic(base_family = "C") +
+    theme(
       # Try to get all bloody fonts matching but probably fail
       # and specify for each of them
       text = element_text(family = "C"),
@@ -115,6 +119,6 @@ save_plot <- function(plot,rows,columns,legend,filename) {
     width <- width + legend_offset
   }
 
-  ggplot2::ggsave(plot=plot,filename=filename,width=width,height=height,unit="px")
+  ggsave(plot=plot,filename=filename,width=width,height=height,unit="px")
 
 } # End of function to save plot to png
