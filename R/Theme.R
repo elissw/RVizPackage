@@ -12,8 +12,8 @@ theme_professional <- function() {
   # and it's a readable sans-serif font
   windowsFonts(C = windowsFont("Calibri"))
   # Start on the basis of theme_classic
-  theme_classic(base_family = "C") +
-    theme(
+  ggplot2::theme_classic(base_family = "C") +
+    ggplot2::theme(
       # Try to get all bloody fonts matching but probably fail
       # and specify for each of them
       text = element_text(family = "C"),
@@ -59,14 +59,14 @@ theme_professional <- function() {
 #' Theme that deletes the x axis of a plot
 #'
 #' @export
-theme_no_x_axis <- theme(axis.line.x = element_blank(),
+theme_no_x_axis <- ggplot2::theme(axis.line.x = element_blank(),
                          axis.ticks.x = element_blank(),
                          axis.text.x = element_blank(),
                          axis.title.x = element_blank())
 #' Theme that deletes the y axis of a plot
 #'
 #' @export
-theme_no_y_axis <- theme(axis.line.y = element_blank(),
+theme_no_y_axis <- ggplot2::theme(axis.line.y = element_blank(),
                          axis.ticks.y = element_blank(),
                          axis.text.y = element_blank(),
                          axis.title.y = element_blank())
@@ -74,7 +74,7 @@ theme_no_y_axis <- theme(axis.line.y = element_blank(),
 #' No x axis and no title for y axis. Also no grid.
 #'
 #' @export
-theme_barplot_axes <- theme(axis.line.x = element_blank(),
+theme_barplot_axes <- ggplot2::theme(axis.line.x = element_blank(),
                             axis.ticks.x = element_blank(),
                             axis.text.x = element_blank(),
                             axis.title.x = element_blank(),
@@ -115,6 +115,6 @@ save_plot <- function(plot,rows,columns,legend,filename) {
     width <- width + legend_offset
   }
 
-  ggsave(plot=plot,filename=filename,width=width,height=height,unit="px")
+  ggplot2::ggsave(plot=plot,filename=filename,width=width,height=height,unit="px")
 
 } # End of function to save plot to png
