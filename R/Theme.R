@@ -4,6 +4,9 @@
 #' are homogeneous.
 #' @export
 theme_professional <- function() {
+
+  library(ggplot2)
+
   # Choose a font, for example Calibri which
   # is probably by default installed everywhere
   # and it's a readable sans-serif font
@@ -92,6 +95,8 @@ theme_barplot_axes <- theme(axis.line.x = element_blank(),
 #' @param filename The absolute path and filename of the plot
 #' @export
 save_plot <- function(plot,rows,columns,legend,filename) {
+
+  library(ggplot2)
 
   height1 <- 1000
   height2 <- 2000
