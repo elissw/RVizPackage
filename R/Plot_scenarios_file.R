@@ -8,12 +8,14 @@
 library(ggplot2)
 library(forcats)
 library(ggridges)
+library(dplyr)
 
 plot_scenarios <- function(filename) {
 
   library(ggplot2)
   library(forcats)
   library(ggridges)
+  library(dplyr)
 
   # set the proper theme
   theme_set(theme_professional())
