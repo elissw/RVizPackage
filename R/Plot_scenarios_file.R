@@ -9,6 +9,7 @@ library(ggplot2)
 library(forcats)
 library(ggridges)
 library(dplyr)
+library(patchwork)
 
 plot_scenarios <- function(filename) {
 
@@ -16,6 +17,7 @@ plot_scenarios <- function(filename) {
   library(forcats)
   library(ggridges)
   library(dplyr)
+  library(patchwork)
 
   # set the proper theme
   theme_set(theme_professional())
