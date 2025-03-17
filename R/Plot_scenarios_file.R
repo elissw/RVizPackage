@@ -45,6 +45,63 @@ plot_scenarios <- function(filename) {
 
   plot00 <- plot1|plot2
 
+  df <- df %>%
+    mutate(machine = fct_reorder(machine, beam_p_s, .fun = max, .desc = TRUE))
+
+  df$facility <- df$machine
+  plot1 <- ggplot(df|>filter(material=="item"),aes(x=beam_p_s,y=facility))+
+    geom_density_ridges(aes(color=facility,fill=facility),
+                        linewidth=0.8,alpha=0.6,
+                        bandwidth = 0.25)+
+    scale_x_log10()+
+    scale_color_viridis_d()+scale_fill_viridis_d()+
+    labs(y="Machine",x="Beam losses [p/s]")+
+    guides(color="none",fill="none")
+
+  plot2 <- ggplot(df|>filter(material=="item"),aes(x=irradiation_y,y=facility))+
+    geom_density_ridges(aes(color=facility,fill=facility),
+                        linewidth=0.8,alpha=0.6,
+                        bandwidth = 1.3)+
+    scale_color_viridis_d()+scale_fill_viridis_d()+
+    labs(x="Irradiation time [y]")+
+    theme_no_y_axis+
+    guides(color="none",fill="none")
+
+  plot3 <- ggplot(df|>filter(material=="item"),aes(x=waiting_y,y=facility))+
+    geom_density_ridges(aes(color=facility,fill=facility),
+                        linewidth=0.8,alpha=0.6,
+                        bandwidth = 1.5)+
+    scale_color_viridis_d()+scale_fill_viridis_d()+
+    labs(x="Waiting time [y]")+
+    theme_no_y_axis+
+    guides(color="none",fill="none")
+
+  plot01 <- plot1 | plot2 | plot3
+
+  binwidth <- 200
+  plot1 <- ggplot(df |> filter(material == "item"), aes(x = mass_kg)) +
+    geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
+              color = "black", linewidth = 0.8)+
+    labs(x="Mass [kg]", y="Number of items")
+
+  df <- df|>mutate(volume_m3 = volume_cm3 / 1000000)
+  binwidth <- 0.25
+  plot2 <- ggplot(df |> filter(material == "item"), aes(x = volume_m3)) +
+    geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
+              color = "black", linewidth = 0.8)+
+    labs(x="Volume [m3]", y="Number of items")
+
+  binwidth <- 0.12
+  plot3 <- ggplot(df |> filter(material == "item"), aes(x = density_g_cm3)) +
+    geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
+              color = "black", linewidth = 0.8)
+    labs(x="Density [g/cm3]", y="Number of items")
+
+  plot02 <- plot1|plot2|plot3
+
+  plot <- plot00/plot02/plot01
+  print(plot)
+
 
 } # end of function
 
