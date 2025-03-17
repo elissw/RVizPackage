@@ -3,7 +3,7 @@
 #' Function to plot (almost) all scenario parameters in one grid
 #' @param filename Where is the scenarios file located and what's the name
 #' @export
-#'
+
 library(ggplot2)
 library(forcats)
 library(ggridges)
