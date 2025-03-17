@@ -1,6 +1,7 @@
 #' Plot all scenario parameters
 #'
 #' Function to plot (almost) all scenario parameters in one grid
+#' @name plot_scenarios
 #' @param filename Where is the scenarios file located and what's the name
 #' @export
 
@@ -9,6 +10,10 @@ library(forcats)
 library(ggridges)
 
 plot_scenarios <- function(filename) {
+
+  library(ggplot2)
+  library(forcats)
+  library(ggridges)
 
   # set the proper theme
   theme_set(theme_professional())
