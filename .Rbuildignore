@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 ^VizPackage\.Rproj$
+=======
+^.*\.Rproj$
+>>>>>>> 83d126b98fdc9c697b8f3c480deba403015e9534
 ^\.Rproj\.user$

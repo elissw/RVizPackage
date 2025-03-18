@@ -87,20 +87,20 @@ plot_scenarios <- function(filename) {
 
   plot01 <- plot1 | plot2 | plot3
 
-  binwidth <- 200
+  binwidth <- freedman_diaconis_binwidth((df |> filter(material == "item"))$mass_kg)
   plot1 <- ggplot(df |> filter(material == "item"), aes(x = mass_kg)) +
     geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
               color = "black", linewidth = 0.8)+
     labs(x="Mass [kg]", y="Number of items")
 
   df <- df|>mutate(volume_m3 = volume_cm3 / 1000000)
-  binwidth <- 0.25
+  binwidth <- freedman_diaconis_binwidth((df |> filter(material == "item"))$volume_m3)
   plot2 <- ggplot(df |> filter(material == "item"), aes(x = volume_m3)) +
     geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
               color = "black", linewidth = 0.8)+
     labs(x="Volume [m3]", y="Number of items")
 
-  binwidth <- 0.12
+  binwidth <- freedman_diaconis_binwidth((df |> filter(material == "item"))$density_g_cm3)
   plot3 <- ggplot(df |> filter(material == "item"), aes(x = density_g_cm3)) +
     geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
               color = "black", linewidth = 0.8)
