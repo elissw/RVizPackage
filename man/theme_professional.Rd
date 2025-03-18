@@ -3,9 +3,6 @@
 \name{theme_professional}
 \alias{theme_professional}
 \title{Theme function for all plots}
-\usage{
-theme_professional()
-}
 \description{
 Create a theme with accompanying functions, so all plots
 are homogeneous.

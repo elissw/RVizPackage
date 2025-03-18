@@ -2,6 +2,7 @@
 #'
 #' Create a theme with accompanying functions, so all plots
 #' are homogeneous.
+#' @name theme_professional
 #' @export
 #'
 
