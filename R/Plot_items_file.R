@@ -37,6 +37,7 @@ plot_items <- function(filename) {
                   aes(x = item_DR_10cm_uSv_h)) +
     geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
               color = "black", linewidth = 0.8)+
+    scale_x_log10()+
     labs(x="Dose rate @ 10 cm [uSv/h]", y="Number of items")
 
   plot2 <- ggplot(df |>
