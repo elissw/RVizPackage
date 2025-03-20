@@ -10,7 +10,7 @@ library(forcats)
 library(dplyr)
 library(patchwork)
 
-plot_scenarios <- function(filename) {
+plot_items <- function(filename) {
 
   library(ggplot2)
   library(forcats)
