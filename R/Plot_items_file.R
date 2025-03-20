@@ -31,10 +31,10 @@ plot_items <- function(filename) {
 
   # Plots
   #-------
-  binwidth <- freedman_diaconis_binwidth((df |> filter(material == "item"))$item_DR_uSv_h)
+  binwidth <- freedman_diaconis_binwidth((df |> filter(material == "item"))$item_DR_10cm_uSv_h)
   plot1 <- ggplot(df |>
                     filter(material == "item"),
-                  aes(x = item_DR_uSv_h)) +
+                  aes(x = item_DR_10cm_uSv_h)) +
     geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
               color = "black", linewidth = 0.8)+
     labs(x="Dose rate @ 10 cm [uSv/h]", y="Number of items")
