@@ -103,7 +103,7 @@ plot_scenarios <- function(filename) {
   binwidth <- freedman_diaconis_binwidth((df |> filter(material == "item"))$density_g_cm3)
   plot3 <- ggplot(df |> filter(material == "item"), aes(x = density_g_cm3)) +
     geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
-              color = "black", linewidth = 0.8)
+              color = "black", linewidth = 0.8)+
     labs(x="Density [g/cm3]", y="Number of items")
 
   plot02 <- plot1|plot2|plot3
