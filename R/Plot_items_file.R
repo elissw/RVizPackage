@@ -31,7 +31,7 @@ plot_items <- function(filename) {
 
   # Plots
   #-------
-  binwidth <- freedman_diaconis_binwidth((df |> filter(material == "item"))$item_DR_10cm_uSv_h)
+  binwidth <- freedman_diaconis_binwidth_log((df |> filter(material == "item"))$item_DR_10cm_uSv_h)
   plot1 <- ggplot(df |>
                     filter(material == "item"),
                   aes(x = item_DR_10cm_uSv_h)) +
