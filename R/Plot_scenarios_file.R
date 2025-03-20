@@ -111,6 +111,7 @@ plot_scenarios <- function(filename) {
   plot <- plot00/plot02/plot01
   print(plot)
 
+  return(plot)
 
 } # end of function
 
