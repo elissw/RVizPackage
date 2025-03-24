@@ -140,7 +140,7 @@ plot_scenarios <- function(filename) {
     pivot_longer(cols = everything(), names_to = "Material", values_to = "Material_Type")
   df_material_types <- df_material_types %>%
     mutate(Material = gsub("_group", "", Material))
-  plot2 <- ggplot(df, aes(y = Material_Type)) +
+  plot2 <- ggplot(df_material_types, aes(y = Material_Type)) +
     geom_bar(width=0.4) +
     labs(title = "Material Types",
          x="Percentage [%]",
