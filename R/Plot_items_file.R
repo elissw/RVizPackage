@@ -94,8 +94,38 @@ plot_items <- function(filename) {
 
   plot01 <- plot1 | plot2 | plot3
 
-  plot <- plot00/plot01
+
+  binwidth <- freedman_diaconis_binwidth_log((df |> filter(material == "item"))$total_activity_Bq_g)
+  plot1 <- ggplot(df |>
+                    filter(material == "item"),
+                  aes(x = total_activity_Bq_g)) +
+    geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
+              color = "black", linewidth = 0.8)+
+    scale_x_log10()+
+    labs(x="Total activity [Bq/g]", y="Number of items")
+
+  plot2 <- ggplot(df |>
+                    filter(material == "item") |>
+                    mutate(position = fct_reorder(position, total_activity_Bq_g, median, .desc = FALSE)),
+                  aes(x = total_activity_Bq_g, y = position)) +
+    geom_boxplot(alpha=0.6) +
+    scale_x_log10()+
+    labs(x="Total activity [Bq/g]", y="Irradiation position")
+
+  plot3 <- ggplot(df |>
+                    mutate(material = fct_reorder(material, total_activity_Bq_g, median, .desc = FALSE)),
+                  aes(x = total_activity_Bq_g, y = material)) +
+    geom_boxplot(alpha=0.6) +
+    scale_x_log10()+
+    labs(x="Total activity [Bq/g]", y="Item component")
+
+  plot02 <- plot1 | plot2 | plot3
+
+
+  plot <- plot01/plot00/plot02
   return(plot)
+
+
 
 } # end
 
