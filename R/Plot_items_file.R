@@ -55,8 +55,39 @@ plot_items <- function(filename) {
     scale_x_log10()+
     labs(x="Dose rate @ 10 cm [uSv/h]", y="Item component")
 
-  plot <- plot1 | plot2 | plot3
+  plot00 <- plot1 | plot2 | plot3
 
+
+  plot1 <- ggplot(df,aes(y=classification))+
+    geom_bar(width=0.4, fill="#26828e")+
+    labs(title="Classification")+
+    theme_barplot_axes+
+    coord_cartesian(xlim=c(0,nrow(df)*0.95))+
+    geom_label(stat = "count", aes(label = paste0(round(..count../sum(..count..) * 100, 1), "%")),
+              hjust = -0.1, size = 3.5, fill = "white", label.size = 0)+
+    scale_y_continuous(breaks=c(0,1),labels=c("Conventional","Radioactive"))
+
+  binwidth <- freedman_diaconis_binwidth_log((df |> filter(material == "item"))$item_LL)
+  plot2 <- ggplot(df |>
+                    filter(material == "item"),
+                  aes(x = item_LL)) +
+    geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
+              color = "black", linewidth = 0.8)+
+    scale_x_log10()+
+    labs(x="LL", y="Number of items")
+
+  binwidth <- freedman_diaconis_binwidth_log((df |> filter(material == "item"))$item_IRAS)
+  plot3 <- ggplot(df |>
+                    filter(material == "item"),
+                  aes(x = item_IRAS)) +
+    geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
+              color = "black", linewidth = 0.8)+
+    scale_x_log10()+
+    labs(x="IRAS", y="Number of items")
+
+  plot01 <- plot1 | plot2 | plot3
+
+  plot <- plot00/plot01
   return(plot)
 
 } # end
