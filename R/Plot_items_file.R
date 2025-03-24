@@ -80,7 +80,8 @@ plot_items <- function(filename) {
     geom_step(stat="bin", binwidth=binwidth, boundary=0, position=position_nudge(x = -binwidth/2),
               color = "black", linewidth = 0.8)+
     scale_x_log10()+
-    labs(x="LL", y="Number of items")
+    labs(x="LL", y="Number of items")+
+    geom_vline(xintercept=1, linewidth=0.6, linetype="dashed",color="coral")
 
   binwidth <- freedman_diaconis_binwidth_log((df |> filter(material == "item"))$item_IRAS)
   plot3 <- ggplot(df |>
