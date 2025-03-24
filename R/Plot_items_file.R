@@ -58,7 +58,13 @@ plot_items <- function(filename) {
   plot00 <- plot1 | plot2 | plot3
 
 
-  plot1 <- ggplot(df,aes(y=classification))+
+  df <- df |>
+    mutate(item_classification = ifelse(
+      item_DR_10cm_uSv_h < 0.1 &
+        item_LL < 1.0,
+      0, 1))
+
+  plot1 <- ggplot(df,aes(y=item_classification))+
     geom_bar(width=0.4, fill="#26828e")+
     labs(title="Classification")+
     theme_barplot_axes+
