@@ -13,4 +13,5 @@ Imports: ggplot2,
          forcats,
          ggridges,
          dplyr,
-         patchwork
+         patchwork,
+         tidyr

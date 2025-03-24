@@ -10,6 +10,7 @@ library(forcats)
 library(ggridges)
 library(dplyr)
 library(patchwork)
+library(tidyr)
 
 plot_scenarios <- function(filename) {
 
@@ -18,6 +19,7 @@ plot_scenarios <- function(filename) {
   library(ggridges)
   library(dplyr)
   library(patchwork)
+  library(tidyr)
 
   # set the proper theme
   theme_set(theme_professional())
@@ -108,10 +110,49 @@ plot_scenarios <- function(filename) {
 
   plot02 <- plot1|plot2|plot3
 
-  plot <- plot00/plot02/plot01
+  plot_1 <- plot00/plot02/plot01
   print(plot)
 
-  return(plot)
+
+  ### Materials details
+  df <- df |> filter(material=="item")
+  df_materials <- df |>
+    select(thickness_cm:Ag) |>
+    select(-c(thickness_cm,Ag))
+
+  df_main_materials <- df_materials |>
+    select(!ends_with("_group")) |>
+    pivot_longer(cols=everything(),
+                  names_to="material",
+                  values_to="percentage")
+
+  plot1 <- ggplot(df_main_materials,
+                  aes(x = percentage, fill = material)) +
+          geom_density(aes(color=material, fill=material),
+                       alpha=0.6, linewidth=0.8)+
+          scale_color_viridis_d()+scale_fill_viridis_d()+
+          scale_x_continuous(breaks=seq(0,1,0.2),labels=seq(0,100,20))+
+          labs(x="Percentage [%]", y="Percentage distribution [a.u.]",
+               fill="Main material",color="Main material")
+
+  df_material_types <- df_materials %>%
+    select(ends_with("_group")) %>%
+    pivot_longer(cols = everything(), names_to = "Material", values_to = "Material_Type")
+  df_material_types <- df_material_types %>%
+    mutate(Material = gsub("_group", "", Material))
+  plot2 <- ggplot(df, aes(y = Material_Type)) +
+    geom_bar(width=0.4) +
+    labs(title = "Material Types",
+         x="Percentage [%]",
+         y="")+
+    facet_wrap(~Material, scales="free")
+
+  plot_2 <- plot1 / plot2
+
+  plots <- list()
+  plots[[1]] <- plot_1
+  plots[[2]] <- plot_2
+  return(plots)
 
 } # end of function
 
