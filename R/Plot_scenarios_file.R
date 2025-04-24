@@ -149,20 +149,24 @@ plot_scenarios <- function(filename) {
                    aes(y = ..density.. / max(..density..)),
                        color=palette[i], fill=palette[i],
                        alpha=0.6, linewidth=0.8)+
-      geom_text(data=dummy,
-                x=1.05,y=0.85-0.1*i,color=palette[i],
-                label=paste0("- ",material),
-                size=5, hjust=0)
+      geom_point(data = dummy,
+                 aes(x = 1.0, y = 0.85 - 0.1 * i,
+                     color = palette[i]),
+                 size = 4) +  # Adjust size of the box
+      geom_text(data = dummy,
+                aes(x = 1.05, y = 0.85 - 0.1 * i,
+                    label = paste0("- ", material)),
+                color = "black", size = 5.5, hjust = 0)
     }
 
 
   plot1 <- plot1 +
           scale_x_continuous(breaks=seq(0,1.0,0.2),labels=seq(0,100,20))+
-          coord_cartesian(xlim=c(0,1.2))+
+          coord_cartesian(xlim=c(0,1.1))+
           labs(x="Percentage [%]", y="Percentage distribution [a.u.]")+
           geom_label(data=dummy,
-                    x=1.05,y=0.9, color="black",label="Material",
-                    size=5, hjust=0)
+                    x=1.0,y=0.9, color="black",label="Material",
+                    size=5.5, hjust=0)
 
 
   df_material_types <- df_materials %>%
