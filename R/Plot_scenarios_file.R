@@ -150,12 +150,12 @@ plot_scenarios <- function(filename) {
                        color=palette[i], fill=palette[i],
                        alpha=0.6, linewidth=0.8)+
       geom_point(data = dummy,
-                 x = 1.05, y = 0.85 - 0.1 * i, color = palette[i],
-                 size = 4) +
+                 x = 1.0, y = 0.85 - 0.1 * i, color = palette[i],
+                 size = 5) +
       geom_text(data = dummy,
                 x = 1.05, y = 0.85 - 0.1 * i,
                 label = paste0(material),
-                color = palette[i], size = 5.5, hjust = 0)
+                color = "black", size = 5.5, hjust = 0, vjust=0)
     }
 
 
