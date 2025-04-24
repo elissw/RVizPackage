@@ -115,6 +115,10 @@ plot_scenarios <- function(filename) {
 
 
   ### Materials details
+  ###====================
+
+  dummy <- data.frame()
+
   df <- df |> filter(material=="item")
   df_materials <- df |>
     select(thickness_cm:Ag) |>
@@ -126,14 +130,33 @@ plot_scenarios <- function(filename) {
                   names_to="material",
                   values_to="percentage")
 
+  main_mats <- unique(df_main_materials$material)
+
+  palette <- viridis(length(main_mats), option = "D")
+
   plot1 <- ggplot(df_main_materials,
-                  aes(x = percentage, fill = material)) +
-          geom_density(aes(color=material, fill=material),
+                  aes(x = percentage))
+
+  i <- 0
+  for (material in main_mats) {
+    i <- i+1
+    plot1 <- plot1 +
+      geom_density(data=df_main_materials|>filter(material==!!material),
+                   aes(y = ..density.. / max(..density..)),
+                       color=palette[i], fill=palette[i],
                        alpha=0.6, linewidth=0.8)+
-          scale_color_viridis_d()+scale_fill_viridis_d()+
+      geom_text(data=dummy,
+                x=60,y=0.95-0.07*i,color=palette[i],
+                label=paste0("- ",material),
+                size=4, hjust=0)
+    }
+
+
+  plot1 <- plot1 +
           scale_x_continuous(breaks=seq(0,1,0.2),labels=seq(0,100,20))+
           labs(x="Percentage [%]", y="Percentage distribution [a.u.]",
                fill="Main material",color="Main material")
+
 
   df_material_types <- df_materials %>%
     select(ends_with("_group")) %>%
