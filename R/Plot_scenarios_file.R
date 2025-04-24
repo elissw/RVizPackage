@@ -11,6 +11,7 @@ library(ggridges)
 library(dplyr)
 library(patchwork)
 library(tidyr)
+libar(viridis)
 
 plot_scenarios <- function(filename) {
 
@@ -20,6 +21,7 @@ plot_scenarios <- function(filename) {
   library(dplyr)
   library(patchwork)
   library(tidyr)
+  libary(viridis)
 
   # set the proper theme
   theme_set(theme_professional())
