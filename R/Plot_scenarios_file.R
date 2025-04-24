@@ -119,7 +119,9 @@ plot_scenarios <- function(filename) {
   ### Materials details
   ###====================
 
-  dummy <- data.frame()
+  x <- c(1)
+  y<-c(1)
+  dummy <- data.frame(x,y)
 
   df <- df |> filter(material=="item")
   df_materials <- df |>
@@ -148,16 +150,15 @@ plot_scenarios <- function(filename) {
                        color=palette[i], fill=palette[i],
                        alpha=0.6, linewidth=0.8)+
       geom_text(data=dummy,
-                x=0.6,y=0.95-0.07*i,color=palette[i],
+                x=0.6,y=1-0.05*i,color=palette[i],
                 label=paste0("- ",material),
-                size=4, hjust=0)
+                size=3, hjust=0)
     }
 
 
   plot1 <- plot1 +
           scale_x_continuous(breaks=seq(0,1,0.2),labels=seq(0,100,20))+
-          labs(x="Percentage [%]", y="Percentage distribution [a.u.]",
-               fill="Main material",color="Main material")
+          labs(x="Percentage [%]", y="Percentage distribution [a.u.]")
 
 
   df_material_types <- df_materials %>%
