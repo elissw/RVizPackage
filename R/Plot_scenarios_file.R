@@ -150,9 +150,9 @@ plot_scenarios <- function(filename) {
                        color=palette[i], fill=palette[i],
                        alpha=0.6, linewidth=0.8)+
       geom_text(data=dummy,
-                x=0.6,y=1-0.05*i,color=palette[i],
+                x=0.7,y=1-0.08*i,color=palette[i],
                 label=paste0("- ",material),
-                size=3, hjust=0)
+                size=4, hjust=0)
     }
 
 
