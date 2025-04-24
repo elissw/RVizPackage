@@ -149,10 +149,12 @@ plot_scenarios <- function(filename) {
                    aes(y = ..density.. / max(..density..)),
                        color=palette[i], fill=palette[i],
                        alpha=0.6, linewidth=0.8)+
-      geom_point(data = dummy,
-                 aes(x = 1.0, y = 0.85 - 0.1 * i,
-                     color = palette[i]),
-                     size = 4) #+
+      geom_rect(data = dummy,
+                aes(xmin = 1.0, xmax = 1.05,
+                    ymin = 0.85 - 0.1 * i,
+                    ymax = 0.9 - 0.1 * i,
+                    fill = palette[i]),
+                color = "black") #+
       # geom_text(data = dummy,
       #           aes(x = 1.05, y = 0.85 - 0.1 * i,
       #               label = paste0(material)),
