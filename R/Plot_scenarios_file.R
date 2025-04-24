@@ -156,7 +156,9 @@ plot_scenarios <- function(filename) {
       geom_text(data = dummy,
                 aes(x = 1.05, y = 0.85 - 0.1 * i,
                     label = paste0(material)),
-                    color = "black", size = 5.5, hjust = 0)
+                    color = "black", size = 5.5, hjust = 0)+
+      scale_color_manual(values=palette)+
+      scale_fill_manual(values=palette)
     }
 
 
