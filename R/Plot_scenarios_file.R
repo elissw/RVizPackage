@@ -152,11 +152,11 @@ plot_scenarios <- function(filename) {
       geom_point(data = dummy,
                  aes(x = 1.0, y = 0.85 - 0.1 * i,
                      color = palette[i]),
-                 size = 4) +  # Adjust size of the box
+                     size = 4) +  # Adjust size of the box
       geom_text(data = dummy,
                 aes(x = 1.05, y = 0.85 - 0.1 * i,
-                    label = paste0("- ", material)),
-                color = "black", size = 5.5, hjust = 0)
+                    label = paste0(material)),
+                    color = "black", size = 5.5, hjust = 0)
     }
 
 
