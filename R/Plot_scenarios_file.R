@@ -138,15 +138,15 @@ plot_scenarios <- function(filename) {
 
   palette <- viridis(length(main_mats), option = "D")
 
-  plot1 <- ggplot(df_main_materials,
-                  aes(x = percentage))
+  plot1 <- ggplot(df_main_materials)
 
   i <- 0
   for (material in main_mats) {
     i <- i+1
     plot1 <- plot1 +
       geom_density(data=df_main_materials|>filter(material==!!material),
-                   aes(y = ..density.. / max(..density..)),
+                   aes(x=percentage,
+                       y = ..density.. / max(..density..)),
                        color=palette[i], fill=palette[i],
                        alpha=0.6, linewidth=0.8)+
       geom_rect(data = dummy,
