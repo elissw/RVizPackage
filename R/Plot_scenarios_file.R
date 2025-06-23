@@ -168,17 +168,34 @@ plot_scenarios <- function(filename) {
                     size=5.5, hjust=0)
 
 
+  # df_material_types <- df_materials %>%
+  #   select(ends_with("_group")) %>%
+  #   pivot_longer(cols = everything(), names_to = "Material", values_to = "Material_Type")
+  # df_material_types <- df_material_types %>%
+  #   mutate(Material = gsub("_group", "", Material))
+  # plot2 <- ggplot(df_material_types, aes(y = Material_Type)) +
+  #   geom_bar(width=0.4) +
+  #   labs(title = "Material Types",
+  #        x="Number of items",
+  #        y="")+
+  #   facet_wrap(~Material, scales="free")
+
   df_material_types <- df_materials %>%
     select(ends_with("_group")) %>%
-    pivot_longer(cols = everything(), names_to = "Material", values_to = "Material_Type")
-  df_material_types <- df_material_types %>%
-    mutate(Material = gsub("_group", "", Material))
-  plot2 <- ggplot(df_material_types, aes(y = Material_Type)) +
-    geom_bar(width=0.4) +
+    pivot_longer(cols = everything(), names_to = "Material", values_to = "Material_Type") %>%
+    mutate(Material = gsub("_group", "", Material)) %>%
+    group_by(Material, Material_Type) %>%
+    summarise(count = n(), .groups = "drop") %>%
+    group_by(Material) %>%
+    mutate(percentage = count / sum(count) * 100)
+
+  # Now plot the percentages
+  plot2 <- ggplot(df_material_types, aes(y = reorder(Material_Type, percentage), x = percentage)) +
+    geom_bar(stat = "identity", width = 0.4, fill = "grey40") +
     labs(title = "Material Types",
-         x="Number of items",
-         y="")+
-    facet_wrap(~Material, scales="free")
+         x = "Percentage of items",
+         y = "") +
+    facet_wrap(~Material, scales = "free")
 
   plot_2 <- plot1 / plot2
 
