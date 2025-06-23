@@ -193,7 +193,7 @@ plot_scenarios <- function(filename) {
   plot2 <- ggplot(df_material_types, aes(y = reorder(Material_Type, percentage), x = percentage)) +
     geom_bar(stat = "identity", width = 0.4, fill = "grey40") +
     labs(title = "Material Types",
-         x = "Percentage of items",
+         x = "Percentage [%]",
          y = "") +
     facet_wrap(~Material, scales = "free")
 
