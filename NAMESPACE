@@ -2,6 +2,7 @@
 
 export(freedman_diaconis_binwidth)
 export(freedman_diaconis_binwidth_log)
+export(list_package_functions)
 export(plot_items)
 export(plot_scenarios)
 export(save_plot)

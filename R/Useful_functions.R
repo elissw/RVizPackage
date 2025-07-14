@@ -23,3 +23,19 @@ freedman_diaconis_binwidth_log <- function(x) {
   n <- length(x)
   return(2 * iqr_x / (n^(1/3)))  # Convert back to linear scale
 }
+
+
+#' List exported functions of an installed package
+#'
+#' @return A character vector of function names
+#' @export
+list_package_functions <- function() {
+  pck <- "VizPackage"
+  exports <- getNamespaceExports(pkg)
+
+  funs <- exports[sapply(exports, function(x) {
+    is.function(getExportedValue(pkg, x))
+  })]
+
+  return(funs)
+}
