@@ -30,7 +30,7 @@ freedman_diaconis_binwidth_log <- function(x) {
 #' @return A character vector of function names
 #' @export
 list_package_functions <- function() {
-  pck <- "VizPackage"
+  pkg <- "VizPackage"
   exports <- getNamespaceExports(pkg)
 
   funs <- exports[sapply(exports, function(x) {
