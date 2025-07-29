@@ -1,0 +1,126 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lora:wght@400;700&display=swap');
+
+
+/* === Layout Tweaks to Stack Title Above Nav Links === */
+.navbar-header, .navbar-collapse {
+  float: none !important;
+  display: block;
+  text-align: left;
+}
+
+.navbar .navbar-brand {
+  display: block;
+  float: none;
+  text-align: left;
+  white-space: normal; /* Allow wrapping */
+}
+
+/* Center nav menu items below the title */
+.navbar-nav {
+  float: none;
+  display: inline-block;
+  text-align: left;
+}
+
+/* Optional: remove default spacing */
+.navbar {
+  padding: 10px 0;
+}
+
+
+
+/* Navigation bar */
+.navbar-inverse {
+  background-color: teal;
+  border-color: teal;
+}
+
+/* Navigation buttons when you hover over them */
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus,
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  color: #ffffff;
+  background-color: tan;
+}
+
+/* Active navigation button */
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: teal;
+  background-color: wheat;
+}
+
+
+.navbar-brand {
+  font-family: 'Poppins', sans-serif; /* Change font family */
+  color: MistyRose !important; /* Change font color */
+  font-size: 22px; /* Change font size */
+}
+
+
+/* Headers to be used in the text parts */
+h4,h5,h6 {
+  color: teal;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* All other text */
+/* Apply Lora to all other text */
+body, p, li, blockquote, code, pre {
+  font-family: 'Lora', serif;
+}
+
+/* Makeshift box */
+.row-content {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}   
+    
+    
+/* Images */
+
+img {
+  max-width: 100%; /* Ensure images do not exceed their container width */
+  height: auto; /* Maintain image aspect ratio */
+  display: block; /* Ensure images behave as block elements */
+  margin: 0 auto; /* Center-align images */
+}
+
+.image-container {
+  text-align: center; /* Center-align content */
+}
+
+.row-content .image-container img {
+  max-width: 100%; /* Ensure images do not exceed their container width */
+  height: auto; /* Maintain image aspect ratio */
+  display: inline-block; /* Display images inline */
+  margin: 0 10px; /* Add spacing between images */
+}
+
+/* Caption Styles */
+.float .figcaption {
+  font-size: 11pt; /* Adjust the font size as needed */
+  text-align: center; /* Adjust the text alignment as needed */
+  margin-top: 10px; /* Add space between the image and caption */
+  margin-bottom: 10px; /* Add margin below the caption */
+  color: gray;
+}
+.figcaption {
+  font-size: 11pt; /* Adjust the font size as needed */
+  text-align: center; /* Adjust the text alignment as needed */
+  margin-top: 1px; /* Add space between the image and caption */
+  margin-bottom: 10px; /* Add margin below the caption */
+  color: gray;
+}
+
+
+
+
+
+
+ 
