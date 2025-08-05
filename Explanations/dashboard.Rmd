@@ -37,11 +37,11 @@ These steps are the same no matter the elimination campaign we're working on. An
 </div>
 
 </div>
-
 </div>
 
+
 ### How to develop?
-<div style="max-width: 70%;">
+
 
 <div class="row-content">
 #### Structure
@@ -55,6 +55,10 @@ An R package is essentially a folder with a specific structure that R understand
 
 - **man/** : Documentation files for each function (auto-generated).
 </div>
+
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+
+<div style="flex: 3; min-width: 0;">
 
 <div class="row-content">
 #### How to build
@@ -98,7 +102,15 @@ devtools::install()
 ```
 
 </div>
+</div>
 
+
+<div style="flex: 2; min-width: 0;">
+<div style="text-align: center;">
+  <img src="./Infos/Rpackage.png" style="width: 100%; display: block; margin-top: 10px;">
+</div>
+
+</div>
 </div>
 
 
