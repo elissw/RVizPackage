@@ -33,7 +33,9 @@ plot_IRAS <- function(filename, filetype) {
   plot <- plot +
     geom_point()+
     geom_abline(intercept = 0, slope=1,
-                color="firebrick", linewidth=0.8,linetype="dashed")
+                color="firebrick", linewidth=0.8,linetype="dashed")+
+    scale_x_log10()+scale_y_log10()+
+    labs(x="ActiWiz IRAS",y="Transfer Functions IRAS")
 
   return(plot)
 
