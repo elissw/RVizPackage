@@ -16,7 +16,8 @@ plot_IRAS <- function(filename, filetype) {
   library(dplyr)
   library(patchwork)
 
-  theme_set(theme_professional)
+  # set the proper theme
+  theme_set(theme_professional())
 
   df <- read.csv(filename)
 
